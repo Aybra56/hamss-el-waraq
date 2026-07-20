@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+
+body{
+    background-color: rgb(2, 27, 29) ;
+}
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration:none;
+}
+
+
+.navbar {
+    font-family: "Tajawal", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    background-color: #006A67 ;
+}
+
+
+
+.navbar-brand {
+    color: #ffffff !important;
+    font-size: 1.6rem!important ;
+    font-weight: bold!important;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff ;
+    font-size: 20px;
+}
+
+/*start show individual book*/
+.books{
+    background-color: rgb(255, 255, 255);
+}
+.book-cover{
+    padding: 10px;
+    
+   
+}
+    
+    
+
+.book-cover img{
+    width: auto;
+    height: 450px;
+    padding: 1.5px;
+    border:10px solid #006A67;
+    
+    
+}
+
+.book-content{
+    margin-top: 20px;
+}
+
+.book-content h1{
+    color: #000000;
+    font-size: 1.7em;
+ 
+}
+.book-content h2{
+    
+    color: rgb(63, 95, 96);
+    font-size: 1em;
+  
+}
+
+.title h3 a{
+color: rgb(0, 0, 0);
+text-decoration: none;
+font-size: 0.7em ;
+}
+.title h3 a:hover{
+    color: rgb(63, 95, 96);
+    text-decoration: none;
+}
+
+.book-content p{
+    line-height:  60px;
+    text-decoration: none;
+}
+.custom-btn {
+    text-decoration: none;
+    
+    padding: 10px 30px;
+    border: 1px solid #555;
+    transition: 0.3s;
+    display: inline-block;
+    background-color: #006A67;
+    color: #ffffff;
+}
+
+.custom-btn:hover {
+    background: #F8F8F8F8;
+    color: #006A67;
+}
+
+.custom-btn a {
+    color: #ffffff;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/*end show individual book*/
+
+
+
+
+
+
+
+
+
+/*start show related book*/
+.related-books{
+    margin-top: 40px;
+    background-color: rgb(255, 255, 255) ;
+    
+}
+.related-book{
+    margin: 10px 0;
+    
+    padding: 5px;
+    border-radius: 1px  #006A67;
+}
+
+
+.cover img{
+   
+    width: auto;
+    height: 300px;
+    
+    
+
+}
+.title{
+    margin-top: 10px ;
+}
+.title a{
+    color: hsl(0, 0%, 2%);
+    text-decoration: none;
+}
+.title a:hover{
+    color: #006A67;
+    
+}
+@media (max-width: 1200px){
+    /*for smaller screens*/
+   .cover img{
+    width: 100%;
+    height: auto;
+
+   }
+   
+}
+@media screen and (max-width: 600px) {
+    .hide-on-small {
+        display: none;
+    }
+}
+/*end show related book*/
+
+
+

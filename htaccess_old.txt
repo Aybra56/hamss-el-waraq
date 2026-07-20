@@ -1,0 +1,96 @@
+# Enable mod_rewrite 
+RewriteEngine On
+
+
+
+# Enable Expires Headers for Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType application/pdf "access plus 1 month"
+</IfModule>
+
+# Set Cache-Control Headers
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-cache, must-revalidate" "env=REDIRECT_status_403"
+    Header set X-Content-Type-Options "nosniff" # Prevent browser from misinterpreting file types
+    Header set X-Frame-Options "SAMEORIGIN" # Allow embedding PDFs in iframes
+    Header set Content-Disposition "inline" # Ensure PDFs open in iframe
+</IfModule>
+
+# Block access to sensitive folders for everyone except your IP
+# Replace YOUR.IP.ADDRESS.HERE with your actual IP address
+RewriteCond %{REQUEST_URI} ^/dashboard/
+RewriteCond %{REMOTE_ADDR} !^196.89.176.194$
+RewriteRule ^ - [F,L]
+
+RewriteCond %{REQUEST_URI} ^/layout/
+RewriteCond %{REMOTE_ADDR} !^YOUR.IP.ADDRESS.HERE$
+RewriteRule ^ - [F,L]
+
+# Block access to robots.txt for everyone except search engines
+
+
+
+ # Robots.txt Rules
+User-agent: *
+Disallow: /dashboard/
+Disallow: /layout/
+Disallow: /uploads/books/  # Block PDFs from being indexed
+Allow: /uploads/bookCovers/  # Allow images to be indexed
+
+
+# Explicitly block PDF indexing in /uploads/books/
+<Directory "/uploads/books/">
+    <FilesMatch "\.pdf$">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
+</Directory>
+
+
+
+# Disable Directory Browsing for the entire website
+Options -Indexes
+
+# Force HTTPS for Security
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Prevent Direct Access to Sensitive Files
+<FilesMatch "^\.(htaccess|htpasswd|env|ini|log|sh|sql|bak)$">
+    Require all denied
+</FilesMatch>
+
+# Block PHP Execution in Uploads Folder (Prevents Malware Execution)
+<Directory "/uploads/">
+    php_flag engine off
+</Directory>
+
+# ✅ ALLOW PDF FILES TO OPEN IN IFRAMES ✅
+<FilesMatch "\.(pdf)$">
+    Require all granted
+</FilesMatch>
+
+# ✅ ALLOW PDF ACCESS IN IFRAMES & DIRECT LINKS ✅
+
+RewriteCond %{HTTP_USER_AGENT} ".*" [NC] # Allow iframe access
+RewriteRule \.(pdf)$ - [L]
+
+# Deny Execution of PHP and Other Scripts in /uploads/books/
+<Directory "/uploads/books/">
+    <FilesMatch "\.(php|cgi|pl|sh|py|exe|bat|cmd)$">
+        Require all denied
+    </FilesMatch>
+</Directory>
+
+# Deny Execution of PHP and Other Scripts in /uploads/bookCovers/
+<Directory "/uploads/bookCovers/">
+    <FilesMatch "\.(php|cgi|pl|sh|py|exe|bat|cmd)$">
+        Require all denied
+    </FilesMatch>
+</Directory>

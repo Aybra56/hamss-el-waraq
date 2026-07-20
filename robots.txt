@@ -1,0 +1,10 @@
+User-agent: *
+Disallow:
+
+User-agent: *
+Disallow: /uploads/books/
+Disallow: /dashboard/
+Disallow: /layout/
+
+
+Sitemap: https://www.hamsselwaraq.com/sitemap.php

@@ -1,0 +1,21 @@
+# Database connection (private)
+layout/include/connection.php
+
+# Environment files
+.env
+
+# Uploaded files
+uploads/
+
+# Temporary files
+*.log
+
+# Editor files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+.robot.txt
